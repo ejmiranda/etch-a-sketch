@@ -16,6 +16,7 @@ newBtn.addEventListener(`click`, () => {
 clearBtn.addEventListener(`click`, () => {
   for (let gridSquare of Array.from(grid.children)) {
     gridSquare.classList.remove(`painted`);
+    gridSquare.style.backgroundColor = getRandomRGBString(255, 255);
   }
 });
 
@@ -58,7 +59,6 @@ function paintGridSquare(gridSquareToPaint) {
     gridSquareToPaint.classList.add(`painted`);
     gridSquareToPaint.style.backgroundColor = getRandomRGBString(255 * (50 / 100), 255);
   }
-  console.log(gridSquareToPaint.style.backgroundColor);
 }
 
 function getRandomRGBString(fromValue, toValue) {
