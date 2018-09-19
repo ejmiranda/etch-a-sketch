@@ -25,18 +25,6 @@ enterBtn.addEventListener(`click`, () => {
   toggleSecondaryPanel();
 });
 
-function removeGrid() {
-  for (let gridSquare of Array.from(grid.children)) {
-      grid.removeChild(gridSquare);
-    }
-}
-
-function toggleSecondaryPanel() {
-  secPanel.classList.toggle(`visible`);  
-  newBtn.disabled = !newBtn.disabled;
-  clearBtn.disabled = !clearBtn.disabled;
-}
-
 function createGrid(gridSize = 16) {
   removeGrid();
   for (let i = 0; i < gridSize*gridSize; i++) {
@@ -51,6 +39,12 @@ function createGrid(gridSize = 16) {
   }
 }
 
+function removeGrid() {
+  for (let gridSquare of Array.from(grid.children)) {
+      grid.removeChild(gridSquare);
+    }
+}
+
 function paintGridSquare(gridSquareToPaint) {
   if (gridSquareToPaint.classList.contains(`painted`)) {
     let currentRGBString = gridSquareToPaint.style.backgroundColor    
@@ -59,14 +53,6 @@ function paintGridSquare(gridSquareToPaint) {
     gridSquareToPaint.classList.add(`painted`);
     gridSquareToPaint.style.backgroundColor = getRandomRGBString(255 * (50 / 100), 255);
   }
-}
-
-function getRandomRGBString(fromValue, toValue) {
-  let color = {r: 0, g: 0, b: 0};
-  color.r = Math.floor((Math.random() * toValue) + fromValue);
-  color.g = Math.floor((Math.random() * toValue) + fromValue);
-  color.b = Math.floor((Math.random() * toValue) + fromValue);
-  return `rgb(${color.r}, ${color.g}, ${color.b})`;
 }
 
 function getDarkerRGBString(string, percentage) {
@@ -79,4 +65,18 @@ function getDarkerRGBString(string, percentage) {
     value = (value < 0) ? 0 : value;
   }
   return `rgb(${color.r}, ${color.g}, ${color.b})`;
+}
+
+function getRandomRGBString(fromValue, toValue) {
+  let color = {r: 0, g: 0, b: 0};
+  color.r = Math.floor((Math.random() * toValue) + fromValue);
+  color.g = Math.floor((Math.random() * toValue) + fromValue);
+  color.b = Math.floor((Math.random() * toValue) + fromValue);
+  return `rgb(${color.r}, ${color.g}, ${color.b})`;
+}
+
+function toggleSecondaryPanel() {
+  secPanel.classList.toggle(`visible`);  
+  newBtn.disabled = !newBtn.disabled;
+  clearBtn.disabled = !clearBtn.disabled;
 }
