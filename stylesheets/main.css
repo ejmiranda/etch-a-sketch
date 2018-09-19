@@ -1,0 +1,73 @@
+body {
+  background-color: whitesmoke;
+}
+
+.container {
+  margin: 10px auto;
+  width: 500px;
+}
+
+.grid {
+  background-color: blue;
+  padding: 10px;
+}
+
+.grid-block {
+  background-color: white;
+  border: 1px solid lightgrey;
+  border-collapse: collapse;
+  display: inline-block;
+  height: 30px;
+  vertical-align: top;
+  width: 30px;
+}
+
+.painted {
+  background-color: navy;
+}
+
+.main-panel,
+.size-panel {
+  padding: 10px;
+}
+
+.main-panel {
+  background-color: red;
+}
+
+.size-panel {
+  background-color: green;
+  display:none;
+}
+
+button,
+input {
+  border-radius: 3px;
+  height: 30px;
+  width: 50px;
+}
+
+button {
+  outline: none;
+}
+
+button:hover {
+  background-color: grey;
+  border-color: grey;
+  color: white;
+  cursor: pointer;
+}
+
+input {
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.clear {
+  float: right;
+}
+
+.visible {
+  display: block;
+}
