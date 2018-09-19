@@ -4,39 +4,35 @@ body {
 
 .container {
   margin: 10px auto;
-  width: 500px;
+  width: 480px;
 }
 
 .grid {
-  background-color: blue;
-  padding: 10px;
+  height: 480px;
+  width: 480px;
 }
 
-.grid-block {
+.grid-square {
   background-color: white;
   border: 1px solid lightgrey;
-  border-collapse: collapse;
-  display: inline-block;
-  height: 30px;
-  vertical-align: top;
-  width: 30px;
+  float: left;
 }
 
 .painted {
   background-color: navy;
 }
 
-.main-panel,
-.size-panel {
+.primary,
+.secondary {
   padding: 10px;
 }
 
-.main-panel {
+.primary {
   background-color: red;
 }
 
-.size-panel {
-  background-color: green;
+.secondary {
+  background-color: orange;
   display:none;
 }
 
