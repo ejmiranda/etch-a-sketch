@@ -1,53 +1,51 @@
-let grid = document.querySelector(`.grid`);
-let newBtn = document.querySelector(`.new`);
-let clearBtn = document.querySelector(`.clear`);
-let sizePanel = document.querySelector(`.size-panel`);
-let sizeInput = document.querySelector(`.size`);
-let enterBtn = document.querySelector(`.enter`);
+const grid = document.querySelector(`.grid`);
+const gridHeight = grid.getBoundingClientRect().height;
+const gridWidth = grid.getBoundingClientRect().width;
+const newBtn = document.querySelector(`.new`);
+const clearBtn = document.querySelector(`.clear`);
+const secPanel = document.querySelector(`.secondary`);
+const sizeInput = document.querySelector(`.size`);
+const enterBtn = document.querySelector(`.enter`);
 
 createGrid();
 
-clearBtn.addEventListener(`click`, () => {
-  for (gridRow of Array.from(grid.children)) {
-    for (gridBlock of Array.from(gridRow.children)) {
-      gridBlock.classList.remove(`painted`);
-    }
-  }
+newBtn.addEventListener(`click`, () => {
+  toggleSecondaryPanel();
 });
 
-newBtn.addEventListener(`click`, () => {
-  toggleSizePanel();
+clearBtn.addEventListener(`click`, () => {
+  for (gridSquare of Array.from(grid.children)) {
+    gridSquare.classList.remove(`painted`);
+  }
 });
 
 enterBtn.addEventListener(`click`, () => {
   createGrid(+sizeInput.value);
-  toggleSizePanel();
+  toggleSecondaryPanel();
 });
 
-function createGrid(size = 16) {
-  clearGrid();
-  for (let i = 0; i < size; i++) {
-    let gridRow = document.createElement(`div`);
-    for (let j = 0; j < size; j++) {
-      let gridBlock = document.createElement(`div`);
-      gridBlock.classList.add(`grid-block`);
-      gridBlock.addEventListener(`mousemove`, (event) => {
-        gridBlock.classList.add(`painted`);
-      });
-      gridRow.appendChild(gridBlock);
-    }
-    grid.appendChild(gridRow);
-  }
-}
-
-function clearGrid() {
-  for (let gridRow of Array.from(grid.children)) {
-      grid.removeChild(gridRow);
+function removeGrid() {
+  for (let gridSquare of Array.from(grid.children)) {
+      grid.removeChild(gridSquare);
     }
 }
 
-function toggleSizePanel() {
-  sizePanel.classList.toggle(`visible`);  
+function toggleSecondaryPanel() {
+  secPanel.classList.toggle(`visible`);  
   newBtn.disabled = !newBtn.disabled;
   clearBtn.disabled = !clearBtn.disabled;
+}
+
+function createGrid(gridSize = 16) {
+  removeGrid();
+  for (i = 0; i < gridSize*gridSize; i++) {
+    let gridSquare = document.createElement(`div`);
+    gridSquare.style.height = `${gridHeight / gridSize}px`;
+    gridSquare.style.width = `${gridWidth / gridSize}px`;
+    gridSquare.classList.add(`grid-square`);
+    gridSquare.addEventListener(`mousemove`, (event) => {
+      gridSquare.classList.add(`painted`);
+    });
+    grid.appendChild(gridSquare);
+  }
 }
