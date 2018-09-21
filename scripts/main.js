@@ -6,14 +6,20 @@ const priPanel = document.querySelector(`.primary`);
 const newBtn = document.querySelector(`.new`);
 const clearBtn = document.querySelector(`.clear`);
 const secPanel = document.querySelector(`.secondary`);
-const sizeInput = document.querySelector(`.size`);
+const sizeSelect = document.querySelector(`.size`);
 const enterBtn = document.querySelector(`.enter`);
 
 createGrid();
 container.insertBefore(secPanel, priPanel);
+for (let i = 16; i <= 64; i += 8) {
+  let option = document.createElement(`option`);
+  option.value = i;
+  option.textContent = i;
+  sizeSelect.appendChild(option);
+}
 
 newBtn.addEventListener(`click`, () => {
-  toggleSecondaryPanel();
+  toggleSecondaryPanel(true);
 });
 
 clearBtn.addEventListener(`click`, () => {
@@ -24,8 +30,8 @@ clearBtn.addEventListener(`click`, () => {
 });
 
 enterBtn.addEventListener(`click`, () => {
-  createGrid(+sizeInput.value);
-  toggleSecondaryPanel();
+  createGrid(+sizeSelect.value);
+  toggleSecondaryPanel(false);
 });
 
 function createGrid(gridSize = 16) {
@@ -78,16 +84,29 @@ function getRandomRGBString(fromValue, toValue) {
   return `rgb(${color.r}, ${color.g}, ${color.b})`;
 }
 
-function toggleSecondaryPanel() {
+function toggleSecondaryPanel(isHidden) {
   newBtn.disabled = !newBtn.disabled;
-  clearBtn.disabled = !clearBtn.disabled;
-  let position = priPanel.getBoundingClientRect().top;
-  let id = setInterval(frame, 5);
+  clearBtn.disabled = !clearBtn.disabled;  
+  let fromValue = 0;
+  let toValue = 0;
+  if (isHidden) {
+    fromValue = priPanel.getBoundingClientRect().top;
+    toValue = priPanel.getBoundingClientRect().bottom - 10;
+  } else {
+    fromValue = priPanel.getBoundingClientRect().bottom - 10;
+    toValue = priPanel.getBoundingClientRect().top - 10;
+  }
+  let position = fromValue;
+  let interval = setInterval(frame, 5);
   function frame() {
-    if (position === priPanel.getBoundingClientRect().bottom - 10) {
-      clearInterval(id);
+    if (position === toValue) {
+      clearInterval(interval);
     } else {
-      position++;
+      if (fromValue < toValue) {
+        position++;
+      } else {
+        position--;
+      }
       secPanel.style.top = `${position}px`;
     }
   }
