@@ -12,7 +12,7 @@ const cancelBtn = document.querySelector(`.cancel`);
 
 createGrid();
 container.insertBefore(secPanel, priPanel);
-for (let i = 16; i <= 64; i += 8) {
+for (let i = 16; i <= 48; i += 8) {
   let option = document.createElement(`option`);
   option.value = i;
   option.textContent = i;
