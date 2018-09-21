@@ -126,7 +126,4 @@ function toggleSecondaryPanel(isHidden) {
       secPanel.style.top = `${position}px`;
     }
   }
-  window.setTimeout(() => {
-      sizeSelect.firstChild.selected = true;
-    }, 200);
 }
