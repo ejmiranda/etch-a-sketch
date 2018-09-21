@@ -101,7 +101,6 @@ function toggleNewBtn() {
 }
 
 function toggleSecondaryPanel(isHidden) {
-  sizeSelect.firstChild.selected = true;
   let fromValue = 0;
   let toValue = 0;
   if (isHidden) {
@@ -127,4 +126,7 @@ function toggleSecondaryPanel(isHidden) {
       secPanel.style.top = `${position}px`;
     }
   }
+  window.setTimeout(() => {
+      sizeSelect.firstChild.selected = true;
+    }, 125);
 }
