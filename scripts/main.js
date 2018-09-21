@@ -32,6 +32,7 @@ clearBtn.addEventListener(`click`, () => {
 
 enterBtn.addEventListener(`click`, () => {
   createGrid(+sizeSelect.value);
+  sizeSelect.firstChild.selected = true;
   toggleSecondaryPanel(false);
 });
 
