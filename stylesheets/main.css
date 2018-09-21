@@ -51,8 +51,8 @@ body {
 
 .logo {
   position: absolute;
-    left: 190px;
-    bottom: -15px;
+    left: 200px;
+    bottom: 20px;
 }
 
 .new,
@@ -98,11 +98,14 @@ label,
 select {
   border-radius: 5px;
   font-family: 'Lobster', cursive;
-  font-weight: bold;
   height: 30px;
   letter-spacing: 2px;
   text-align-last: center;
   width: 65px;
+}
+
+button {
+  background-color: white;
 }
 
 button:hover {
@@ -120,4 +123,8 @@ select {
 
 .shadow {
   box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.5);
+}
+
+.bottom-shadow {
+  box-shadow: 0px 15px 20px -15px rgba(0,0,0,0.5);
 }
