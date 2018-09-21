@@ -21,7 +21,11 @@ for (let i = 16; i <= 64; i += 8) {
 
 newBtn.addEventListener(`click`, () => {
   toggleNewBtn();
-  toggleSecondaryPanel(true);
+  if (newBtn.classList.contains(`pressed`)) {
+    toggleSecondaryPanel(true);
+  } else {
+    toggleSecondaryPanel(false);
+  }
 });
 
 clearBtn.addEventListener(`click`, () => {
@@ -93,7 +97,7 @@ function getRandomRGBString(fromValue, toValue) {
 }
 
 function toggleNewBtn() {
-  newBtn.disabled = !newBtn.disabled;
+  newBtn.classList.toggle(`pressed`);
 }
 
 function toggleSecondaryPanel(isHidden) {
@@ -102,10 +106,12 @@ function toggleSecondaryPanel(isHidden) {
   let toValue = 0;
   if (isHidden) {
     fromValue = priPanel.getBoundingClientRect().top;
-    toValue = priPanel.getBoundingClientRect().bottom - 10;
+    toValue = priPanel.getBoundingClientRect().bottom - 
+        secPanel.getBoundingClientRect().height + 10;
   } else {
-    fromValue = priPanel.getBoundingClientRect().bottom - 10;
-    toValue = priPanel.getBoundingClientRect().top - 10;
+    fromValue = priPanel.getBoundingClientRect().bottom - 
+        secPanel.getBoundingClientRect().height + 10;
+    toValue = priPanel.getBoundingClientRect().top - 25;
   }
   let position = fromValue;
   let interval = setInterval(frame, 5);
