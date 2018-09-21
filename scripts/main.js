@@ -1,6 +1,8 @@
+const container = document.querySelector(`.container`);
 const grid = document.querySelector(`.grid`);
 const gridHeight = grid.getBoundingClientRect().height;
 const gridWidth = grid.getBoundingClientRect().width;
+const priPanel = document.querySelector(`.primary`); 
 const newBtn = document.querySelector(`.new`);
 const clearBtn = document.querySelector(`.clear`);
 const secPanel = document.querySelector(`.secondary`);
@@ -8,6 +10,7 @@ const sizeInput = document.querySelector(`.size`);
 const enterBtn = document.querySelector(`.enter`);
 
 createGrid();
+container.insertBefore(secPanel, priPanel);
 
 newBtn.addEventListener(`click`, () => {
   toggleSecondaryPanel();
@@ -51,7 +54,7 @@ function paintGridSquare(gridSquareToPaint) {
     gridSquareToPaint.style.backgroundColor = getDarkerRGBString(currentRGBString, 10);
   } else {
     gridSquareToPaint.classList.add(`painted`);
-    gridSquareToPaint.style.backgroundColor = getRandomRGBString(255 * (50 / 100), 255);
+    gridSquareToPaint.style.backgroundColor = getRandomRGBString(0, 255);
   }
 }
 
@@ -76,7 +79,16 @@ function getRandomRGBString(fromValue, toValue) {
 }
 
 function toggleSecondaryPanel() {
-  secPanel.classList.toggle(`visible`);  
   newBtn.disabled = !newBtn.disabled;
   clearBtn.disabled = !clearBtn.disabled;
+  let position = priPanel.getBoundingClientRect().top;
+  let id = setInterval(frame, 5);
+  function frame() {
+    if (position === priPanel.getBoundingClientRect().bottom - 10) {
+      clearInterval(id);
+    } else {
+      position++;
+      secPanel.style.top = `${position}px`;
+    }
+  }
 }
