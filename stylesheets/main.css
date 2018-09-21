@@ -94,6 +94,7 @@ body {
 }
 
 button,
+label,
 select {
   border-radius: 5px;
   font-family: 'Lobster', cursive;
@@ -107,6 +108,10 @@ select {
 button:hover {
   color: white;
   cursor: pointer;
+}
+
+select {
+  margin: 0 10px 0 0;
 }
 
 .shadow {
