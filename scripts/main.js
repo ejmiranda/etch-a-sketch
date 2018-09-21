@@ -128,5 +128,5 @@ function toggleSecondaryPanel(isHidden) {
   }
   window.setTimeout(() => {
       sizeSelect.firstChild.selected = true;
-    }, 125);
+    }, 200);
 }
