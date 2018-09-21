@@ -8,6 +8,7 @@ const clearBtn = document.querySelector(`.clear`);
 const secPanel = document.querySelector(`.secondary`);
 const sizeSelect = document.querySelector(`.size`);
 const enterBtn = document.querySelector(`.enter`);
+const cancelBtn = document.querySelector(`.cancel`);
 
 createGrid();
 container.insertBefore(secPanel, priPanel);
@@ -31,6 +32,11 @@ clearBtn.addEventListener(`click`, () => {
 
 enterBtn.addEventListener(`click`, () => {
   createGrid(+sizeSelect.value);
+  toggleSecondaryPanel(false);
+});
+
+cancelBtn.addEventListener(`click`, () => {
+  sizeSelect.firstChild.selected = true;
   toggleSecondaryPanel(false);
 });
 
