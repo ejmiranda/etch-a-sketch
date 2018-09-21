@@ -20,6 +20,7 @@ for (let i = 16; i <= 64; i += 8) {
 }
 
 newBtn.addEventListener(`click`, () => {
+  toggleNewBtn();
   toggleSecondaryPanel(true);
 });
 
@@ -32,12 +33,12 @@ clearBtn.addEventListener(`click`, () => {
 
 enterBtn.addEventListener(`click`, () => {
   createGrid(+sizeSelect.value);
-  sizeSelect.firstChild.selected = true;
+  toggleNewBtn();
   toggleSecondaryPanel(false);
 });
 
 cancelBtn.addEventListener(`click`, () => {
-  sizeSelect.firstChild.selected = true;
+  toggleNewBtn();
   toggleSecondaryPanel(false);
 });
 
@@ -91,9 +92,12 @@ function getRandomRGBString(fromValue, toValue) {
   return `rgb(${color.r}, ${color.g}, ${color.b})`;
 }
 
-function toggleSecondaryPanel(isHidden) {
+function toggleNewBtn() {
   newBtn.disabled = !newBtn.disabled;
-  clearBtn.disabled = !clearBtn.disabled;  
+}
+
+function toggleSecondaryPanel(isHidden) {
+  sizeSelect.firstChild.selected = true;
   let fromValue = 0;
   let toValue = 0;
   if (isHidden) {
