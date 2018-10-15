@@ -13,4 +13,4 @@
 - Include animation for showing/hidding the size selection panel.
 - Users can press `Clear` to wipe the colors and start over in the current canvas.
 
-> **_"My logic is undeniable"_** - V.I.K.I
+> **_"My logic is undeniable."_** - V.I.K.I
